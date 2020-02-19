@@ -16,7 +16,6 @@ def eating_cookies(n, cache=None):
         elif n == 0:
             return 1
 
-        nonlocal cache
         if cache[n - 1] == 0:
             cache[n - 1] = eat(n - 3) + eat(n - 2) + eat(n - 1)
 
