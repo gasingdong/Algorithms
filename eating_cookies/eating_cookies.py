@@ -8,18 +8,15 @@ import sys
 
 
 def eating_cookies(n, cache=None):
-    cache = [0] * n
+    cache = [0] * (n + 1)
+    cache[0] = 1
 
     def eat(n):
         if n < 0:
             return 0
-        elif n == 0:
-            return 1
-
-        if cache[n - 1] == 0:
-            cache[n - 1] = eat(n - 3) + eat(n - 2) + eat(n - 1)
-
-        return cache[n - 1]
+        if cache[n] == 0:
+            cache[n] = eat(n - 3) + eat(n - 2) + eat(n - 1)
+        return cache[n]
 
     return eat(n)
 

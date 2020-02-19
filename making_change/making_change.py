@@ -4,7 +4,14 @@ import sys
 
 
 def making_change(amount, denominations):
-    pass
+    cache = [0] * (amount + 1)
+    cache[0] = 1
+
+    for coin in denominations:
+        for i in range(coin, amount + 1):
+            cache[i] += cache[i - coin]
+
+    return cache[amount]
 
 
 if __name__ == "__main__":
@@ -15,6 +22,6 @@ if __name__ == "__main__":
         amount = int(sys.argv[1])
         print(
             f"There are {making_change(amount, denominations)} ways to make"
-            + f"{amount} cents.")
+            + f" {amount} cents.")
     else:
         print("Usage: making_change.py [amount]")
